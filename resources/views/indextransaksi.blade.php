@@ -4,15 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--  
-    Document Title
-    =============================================
-    -->
     <title>Transaksi</title>
-    <!--  
-    Favicons
-    =============================================
-    -->
     <link rel="apple-touch-icon" sizes="57x57" href="assets/images/favicons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="assets/images/favicons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicons/apple-icon-72x72.png">
@@ -30,14 +22,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/images/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <!--  
-    Stylesheets
-    =============================================
-    
-    -->
-    <!-- Default stylesheets-->
     <link href="assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Template specific stylesheets-->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
@@ -49,15 +34,14 @@
     <link href="assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css" rel="stylesheet">
     <link href="assets/lib/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
     <link href="assets/lib/simple-text-rotator/simpletextrotator.css" rel="stylesheet">
-    <!-- Main stylesheet and color file-->
     <link href="assets/css/style.css" rel="stylesheet">
     <link id="color-scheme" href="assets/css/colors/default.css" rel="stylesheet">
     <style>
         body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
         }
 
         .container {
@@ -108,22 +92,54 @@
         }
 
         .text-center {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
 
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-}
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
 
-.btn-round {
-    border-radius: 20px;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: white;
-}
+        .btn-round {
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .container-transaksi {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .transaksi-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .transaksi-table thead tr {
+            background-color: #000;
+            color: white;
+        }
+
+        .transaksi-table th,
+        .transaksi-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .transaksi-table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .transaksi-table tbody tr:hover {
+            background-color: #ddd;
+        }
 
     </style>
   </head>
@@ -133,11 +149,11 @@
         <div class="loader">Loading...</div>
       </div>
       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
+        <div class="container">
+          <div class="navbar-header">
             <span class="navbar-toggle" type="text" data-toggle="collapse" data-target="#custom-collapse">Toggle navigation</span>
             <a class="navbar-brand" >UangQu</a>
-        </div>
+          </div>
 
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -159,88 +175,37 @@
           </div>
         </section>
         <section class="module">
-        <div class="container">
-        <h1>Transaksi</h1>
-        <div class="text-center">
-          <a href="/createtransaksi" class="btn btn-b btn-round">Tambah Transaksi</a>
-        </div>
-    <form action="/filtertransaksi" method="get" style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-            <label for="tanggalAwal">Tanggal Awal:</label><br>
-            <input type="date" id="tanggalAwal" name="tanggalAwal"><br>
-            <label for="tanggalAkhir">Tanggal Akhir:</label><br>
-            <input type="date" id="tanggalAkhir" name="tanggalAkhir"><br>
-            <input type="submit" class="btn btn-b btn-round" value="Cari">
-        </div>
-        <div style="position: relative;">
-            <input type="text" id="search" name="search" placeholder="Cari...">
-            <input type="submit" class="btn btn-b btn-round" value="FIlter">
-        </div>
-    </form>
-    <!-- Daftar transaksi akan ditampilkan di sini -->
-    </div>
-
-        </section>
-        <div class="module-small bg-dark">
           <div class="container">
-            <div class="row">
-              <div class="col-sm-3">
-                <div class="widget">
-                  <h5 class="widget-title font-alt">About Titan</h5>
-                  <p>The languages only differ in their grammar, their pronunciation and their most common words.</p>
-                  <p>Phone: +1 234 567 89 10</p>Fax: +1 234 567 89 10
-                  <p>Email:<a href="#">somecompany@example.com</a></p>
-                </div>
+            <h1>Transaksi</h1>
+            <div class="text-center">
+              <a href="/createtransaksi" class="btn btn-b btn-round">Tambah Transaksi</a>
+            </div>
+            <form id="filter-form" action="/filtertransaksi" method="get" style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="position: relative;">
+                <input type="text" id="search" name="search" placeholder="Cari...">
+                <input type="submit" class="btn btn-b btn-round" value="Filter">
               </div>
-              <div class="col-sm-3">
-                <div class="widget">
-                  <h5 class="widget-title font-alt">Recent Comments</h5>
-                  <ul class="icon-list">
-                    <li>Maria on <a href="#">Designer Desk Essentials</a></li>
-                    <li>John on <a href="#">Realistic Business Card Mockup</a></li>
-                    <li>Andy on <a href="#">Eco bag Mockup</a></li>
-                    <li>Jack on <a href="#">Bottle Mockup</a></li>
-                    <li>Mark on <a href="#">Our trip to the Alps</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="widget">
-                  <h5 class="widget-title font-alt">Blog Categories</h5>
-                  <ul class="icon-list">
-                    <li><a href="#">Photography - 7</a></li>
-                    <li><a href="#">Web Design - 3</a></li>
-                    <li><a href="#">Illustration - 12</a></li>
-                    <li><a href="#">Marketing - 1</a></li>
-                    <li><a href="#">Wordpress - 16</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="widget">
-                  <h5 class="widget-title font-alt">Popular Posts</h5>
-                  <ul class="widget-posts">
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-1.jpg" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
-                        <div class="widget-posts-meta">23 january</div>
-                      </div>
-                    </li>
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-2.jpg" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
-                        <div class="widget-posts-meta">15 February</div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            </form>
+            <div class="container-transaksi">
+              <table class="transaksi-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="transaksi-body">
+                  <!-- Data transaksi akan ditampilkan di sini -->
+                </tbody>
+              </table>
             </div>
           </div>
-        </div>
-        <hr class="divider-d">
+        </section>
+
         <footer class="footer bg-dark">
           <div class="container">
             <div class="row">
@@ -248,19 +213,15 @@
                 <p class="copyright font-alt">&copy; 2017&nbsp;<a href="index.html">TitaN</a>, All Rights Reserved</p>
               </div>
               <div class="col-sm-6">
-                <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
-                </div>
+                <div class="footer-social-links"><a href="https://www.facebook.com/themefisher"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a><a href="#"><i class="fa fa-vimeo"></i></a></div>
               </div>
             </div>
           </div>
+          <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
         </footer>
       </div>
-      <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
     </main>
-    <!--  
-    JavaScripts
-    =============================================
-    -->
+
     <script src="assets/lib/jquery/dist/jquery.js"></script>
     <script src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/lib/wow/dist/wow.js"></script>
@@ -274,5 +235,91 @@
     <script src="assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <script>
+      // Fungsi untuk mengambil dan menampilkan data transaksi
+      function loadTransactions(filter = '') {
+        $.ajax({
+          url: `http://127.0.0.1:8000/api/transactions${filter}`,
+          method: 'GET',
+          success: function(data) {
+            const tbody = $('#transaksi-body');
+            tbody.empty();
+            if (data.length === 0) {
+              tbody.append('<tr><td colspan="6">No transactions found.</td></tr>');
+            } else {
+              data.forEach(transaction => {
+                tbody.append(`
+                  <tr>
+                    <td>${transaction.id}</td>
+                    <td>${transaction.category}</td>
+                    <td>${transaction.amount}</td>
+                    <td>${transaction.date}</td>
+                    <td>${transaction.description}</td>
+                    <td>
+                      <button onclick="editTransaction(${transaction.id})">Edit</button>
+                      <button onclick="deleteTransaction(${transaction.id})">Delete</button>
+                    </td>
+                  </tr>
+                `);
+              });
+            }
+          },
+          error: function(err) {
+            console.error('Error fetching transactions', err);
+          }
+        });
+      }
+
+      // Fungsi untuk mengedit transaksi
+      function editTransaction(id) {
+        const newAmount = prompt('Enter new amount:');
+        if (newAmount) {
+          $.ajax({
+            url: `http://127.0.0.1:8000/api/transactions/${id}`,
+            method: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify({ amount: newAmount }),
+            success: function() {
+              alert('Transaction updated successfully');
+              loadTransactions();
+            },
+            error: function(err) {
+              console.error('Error updating transaction', err);
+            }
+          });
+        }
+      }
+
+      // Fungsi untuk menghapus transaksi
+      function deleteTransaction(id) {
+        if (confirm('Are you sure you want to delete this transaction?')) {
+          $.ajax({
+            url: `http://127.0.0.1:8000/api/transactions/${id}`,
+            method: 'DELETE',
+            success: function() {
+              alert('Transaction deleted successfully');
+              loadTransactions();
+            },
+            error: function(err) {
+              console.error('Error deleting transaction', err);
+            }
+          });
+        }
+      }
+
+      // Fungsi untuk memfilter transaksi
+      $('#filter-form').submit(function(event) {
+        event.preventDefault();
+        const search = $('#search').val();
+        const filter = search ? `?search=${encodeURIComponent(search)}` : '';
+        loadTransactions(filter);
+      });
+
+      // Memuat data transaksi saat halaman dimuat
+      $(document).ready(function() {
+        loadTransactions();
+      });
+    </script>
   </body>
 </html>

@@ -197,5 +197,36 @@
     <script src="assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: '/api/budgets',
+        method: 'GET',
+        success: function(data) {
+          var tbody = $('.table tbody');
+          data.forEach(function(budget) {
+            var row = '<tr>' +
+              '<td>' + budget.id + '</td>' +
+              '<td>' + budget.category + '</td>' +
+              '<td>' + budget.amount + '</td>' +
+              '<td><a href="/editbudget/' + budget.id + '" class="btn btn-primary btn-sm">Edit</a> ' +
+              '<button class="btn btn-danger btn-sm delete-button" data-id="' + budget.id + '">Delete</button></td>' +
+              '</tr>';
+            tbody.append(row);
+          });
+
+          $('.delete-button').on('click', function() {
+            var id = $(this).data('id');
+            // Add code here to handle the delete action
+          });
+        },
+        error: function(err) {
+          console.log('Error fetching data', err);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
   </body>
 </html>

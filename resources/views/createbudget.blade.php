@@ -4,15 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--  
-    Document Title
-    =============================================
-    -->
     <title>Buat Anggaran Baru</title>
-    <!--  
-    Favicons
-    =============================================
-    -->
     <link rel="apple-touch-icon" sizes="57x57" href="assets/images/favicons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="assets/images/favicons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicons/apple-icon-72x72.png">
@@ -30,14 +22,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/images/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <!--  
-    Stylesheets
-    =============================================
-    
-    -->
-    <!-- Default stylesheets-->
     <link href="assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Template specific stylesheets-->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
@@ -49,7 +34,6 @@
     <link href="assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css" rel="stylesheet">
     <link href="assets/lib/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
     <link href="assets/lib/simple-text-rotator/simpletextrotator.css" rel="stylesheet">
-    <!-- Main stylesheet and color file-->
     <link href="assets/css/style.css" rel="stylesheet">
     <link id="color-scheme" href="assets/css/colors/default.css" rel="stylesheet">
     <style>
@@ -82,7 +66,7 @@
             margin-bottom: 8px;
         }
 
-        form select, form input[type="number"] {
+        form input[type="text"], form input[type="number"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -104,6 +88,17 @@
         form input[type="submit"]:hover {
             background-color: #45a049;
         }
+
+        .center-transaksi-tombol {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .center-transaksi-tombol button {
+            background-color: black;
+            color: white;
+            margin: 10px;
+        }
     </style>
   </head>
   <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
@@ -112,12 +107,11 @@
         <div class="loader">Loading...</div>
       </div>
       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
+        <div class="container">
+          <div class="navbar-header">
             <span class="navbar-toggle" type="text" data-toggle="collapse" data-target="#custom-collapse">Toggle navigation</span>
             <a class="navbar-brand" >UangQu</a>
-        </div>
-
+          </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#totop">Home</a></li>
@@ -138,22 +132,22 @@
           </div>
         </section>
         <section class="module">
-        <div class="container">
+          <div class="container">
             <h1>Buat Anggaran Baru</h1>
-                <form action="/store" method="post">
-                    <label for="kategori">Kategori:</label><br>
-                    <select id="kategori" name="kategori">
-                        <option value="Makanan">Makanan</option>
-                        <option value="Transportasi">Transportasi</option>
-                        <option value="Belanja">Belanja</option>
-                        <!-- Anda dapat menambahkan lebih banyak opsi di sini -->
-                    </select><br>
-                    <label for="jumlah">Jumlah:</label><br>
-                    <input type="number" id="jumlah" name="jumlah"><br>
-                    <input type="submit" class="btn btn-b btn-round" value="Submit">
-                </form> 
-        </div>
-    </div>
+            <form id="anggaranForm">
+              <label for="category">Kategori:</label><br>
+              <input type="text" id="category" name="category"><br>
+              <label for="amount">Jumlah:</label><br>
+              <input type="number" id="amount" name="amount"><br>
+              <input type="submit" class="btn btn-b btn-round" value="Submit">
+            </form>
+          </div>
+
+          <div class="center-transaksi-tombol">
+              <a href="/indextransaksi">
+                  <button>Kembali</button>
+              </a>
+          </div>
 
         </section>
         <div class="module-small bg-dark">
@@ -199,7 +193,7 @@
                       <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-1.jpg" alt="Post Thumbnail"/></a></div>
                       <div class="widget-posts-body">
                         <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
-                        <div class="widget-posts-meta">23 january</div>
+                        <div class="widget-posts-meta">23 January</div>
                       </div>
                     </li>
                     <li class="clearfix">
@@ -223,8 +217,7 @@
                 <p class="copyright font-alt">&copy; 2017&nbsp;<a href="index.html">TitaN</a>, All Rights Reserved</p>
               </div>
               <div class="col-sm-6">
-                <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
-                </div>
+                <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a></div>
               </div>
             </div>
           </div>
@@ -232,10 +225,6 @@
       </div>
       <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
     </main>
-    <!--  
-    JavaScripts
-    =============================================
-    -->
     <script src="assets/lib/jquery/dist/jquery.js"></script>
     <script src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/lib/wow/dist/wow.js"></script>
@@ -249,5 +238,34 @@
     <script src="assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('#anggaranForm').submit(function(e){
+      e.preventDefault();
+      var category = $('#category').val();
+      var amount = $('#amount').val();
+      
+      $.ajax({
+        url: '/api/budgets',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ category: category, amount: amount }),
+        success: function(data) {
+          if (data.success) {
+            alert('Anggaran berhasil dibuat!');
+          } else {
+            alert('Terjadi kesalahan: ' + data.message);
+          }
+        },
+        error: function(xhr, textStatus, errorThrown) {
+          console.error('Error:', errorThrown);
+          alert('Terjadi kesalahan, silakan coba lagi.');
+        }
+      });
+    });
+  });
+</script>
+
   </body>
 </html>
