@@ -52,6 +52,81 @@
     <!-- Main stylesheet and color file-->
     <link href="assets/css/style.css" rel="stylesheet">
     <link id="color-scheme" href="assets/css/colors/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+
+    .container-tabel-transaksi {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .transaksi-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .transaksi-table thead tr {
+        background-color: #000;
+        color: white;
+    }
+
+    .transaksi-table th,
+    .transaksi-table td {
+        border: 1px solid #ddd;
+        padding: 15px;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .transaksi-table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    
+    .transaksi-table th:last-child, .transaksi-table td:last-child {
+    width: 1%; /* Atur lebar kolom aksi menjadi minimum */
+}
+
+    .transaksi-table tbody tr:hover {
+        background-color: #ddd;
+    }
+    /* Tambahkan gaya untuk tombol */
+    .btn {
+        padding: 10px 20px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+    }
+
+    .btn i {
+        margin-right: 5px;
+    }
+</style>
   </head>
   <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
     <main>
@@ -67,7 +142,7 @@
 
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#totop">Home</a></li>
+              <li><a href="/#home">Home</a></li>
               <li><a class="section-scroll" href="/#services">Services</a></li>
             </ul>
           </div>
@@ -75,7 +150,7 @@
       </nav>
 
       <div class="main">
-        <section class="module bg-dark-30 about-page-header" data-background="assets/images/about_bg.jpg">
+        <section class="module bg-dark-30 about-page-header" data-background="assets/images/service.jpg">
           <div class="container">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
@@ -85,10 +160,9 @@
           </div>
         </section>
         <section class="module">
-        <div class="container">
-        <h1>Anggaran</h1>
-        <a href="/createbudget" class="btn btn-b btn-round" type="button">Tambah Anggaran Baru</button></a>
-        <table class="table">
+    <div class="container-tabel-transaksi">
+        <a href="/createbudget" class="btn btn-primary">Buat Anggaran</a>
+        <table class="transaksi-table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -98,12 +172,11 @@
                 </tr>
             </thead>
             <tbody id="budgetTable">
-                <!-- Data anggaran akan ditampilkan di sini -->
+                <!-- Data budget akan ditampilkan di sini -->
             </tbody>
         </table>
     </div>
-
-        </section>
+</section>
         <div class="module-small bg-dark">
           <div class="container">
             <div class="row">

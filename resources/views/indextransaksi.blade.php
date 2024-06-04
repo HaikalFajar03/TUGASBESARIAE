@@ -128,7 +128,7 @@
 
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#totop">Home</a></li>
+              <li><a href="/#home">Home</a></li>
               <li><a class="section-scroll" href="/#services">Services</a></li>
             </ul>
           </div>
@@ -136,7 +136,7 @@
       </nav>
 
       <div class="main">
-        <section class="module bg-dark-30 about-page-header" data-background="assets/images/about_bg.jpg">
+        <section class="module bg-dark-30 about-page-header" data-background="assets/images/service.jpg">
           <div class="container">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
@@ -146,27 +146,31 @@
           </div>
         </section>
         <section class="module">
-            <div class="container-tabel-transaksi">
-                <!-- Tombol "Buat Transaksi" di sebelah kiri -->
-                <h1>Data Transaksi</h1>
-                <a href="/createtransaksi" class="btn btn-primary">Buat Transaksi</a>
-                <table class="transaksi-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Kategori</th>
-                            <th>Deskripsi</th>
-                            <th>Tanggal</th>
-                            <th>Jumlah</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="transactionTable">
-                        <!-- Data transaksi akan ditampilkan di sini -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    <div class="container-tabel-transaksi">
+        <!-- Search form -->
+        <h1>Data Transaksi</h1>
+        <form id="searchForm">
+            <input type="text" id="searchInput" placeholder="Search transactions...">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <a href="/createtransaksi" class="btn btn-primary">Buat Transaksi</a>
+        <table class="transaksi-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kategori</th>
+                    <th>Deskripsi</th>
+                    <th>Tanggal</th>
+                    <th>Jumlah</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="transactionTable">
+                <!-- Data transaksi akan ditampilkan di sini -->
+            </tbody>
+        </table>
+    </div>
+</section>
 
         <footer class="footer bg-dark">
           <div class="container">
@@ -198,59 +202,74 @@
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
-        // Metode DELETE
-        function deleteTransaction(id) {
-            fetch(`http://127.0.0.1:8000/api/transactions/${id}`, {
-                method: 'DELETE'
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                // Refresh tabel setelah penghapusan
-                location.reload();
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        }
-
-        // Metode PUT
-function updateTransaction(id, updatedData) {
-    fetch(`http://127.0.0.1:8000/api/transactions/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedData),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        // Arahkan pengguna kembali ke indextransaksi.blade.php setelah pembaruan berhasil
-        window.location.href = '/indextransaksi';
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
-
-
-fetch('http://127.0.0.1:8000/api/transactions')
+    // Metode DELETE
+    function deleteTransaction(id) {
+        fetch(`http://127.0.0.1:8000/api/transactions/${id}`, {
+            method: 'DELETE'
+        })
         .then(response => response.json())
         .then(data => {
-            let table = document.getElementById('transactionTable');
-            data.data.forEach(item => {
-                let row = table.insertRow();
-                row.insertCell(0).innerHTML = item.id;
-                row.insertCell(1).innerHTML = item.category;
-                row.insertCell(2).innerHTML = item.description;
-                row.insertCell(3).innerHTML = item.date;
-                row.insertCell(4).innerHTML = item.amount;
-                let actions = row.insertCell(5);
-                actions.innerHTML = `<a href="/edittransaksi/${item.id}" class="btn btn-primary"><i class="fas fa-edit"></i> Perbarui</a> <button onclick="deleteTransaction(${item.id})" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button>`;
-            });
+            console.log('Success:', data);
+            // Refresh tabel setelah penghapusan
+            location.reload();
         })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    // Metode PUT
+    function updateTransaction(id, updatedData) {
+        fetch(`http://127.0.0.1:8000/api/transactions/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            // Arahkan pengguna kembali ke indextransaksi.blade.php setelah pembaruan berhasil
+            window.location.href = '/indextransaksi';
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    // Fetch data based on search input
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        let searchQuery = document.getElementById('searchInput').value;
+        fetch(`http://127.0.0.1:8000/api/transactions?search=${searchQuery}`)
+            .then(response => response.json())
+            .then(data => populateTable(data))
+            .catch(error => console.error('Error:', error));
+    });
+
+    // Fetch all data initially and when search input is empty
+    fetch('http://127.0.0.1:8000/api/transactions')
+        .then(response => response.json())
+        .then(data => populateTable(data))
         .catch(error => console.error('Error:', error));
-    </script>
+
+    // Function to populate the table with data
+    function populateTable(data) {
+        let table = document.getElementById('transactionTable');
+        // Clear the table first
+        table.innerHTML = '';
+        data.data.forEach(item => {
+            let row = table.insertRow();
+            row.insertCell(0).innerHTML = item.id;
+            row.insertCell(1).innerHTML = item.category;
+            row.insertCell(2).innerHTML = item.description;
+            row.insertCell(3).innerHTML = item.date;
+            row.insertCell(4).innerHTML = item.amount;
+            let actions = row.insertCell(5);
+            actions.innerHTML = `<a href="/edittransaksi/${item.id}" class="btn btn-primary"><i class="fas fa-edit"></i> Perbarui</a> <button onclick="deleteTransaction(${item.id})" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button>`;
+        });
+    }
+</script>
   </body>
 </html>
