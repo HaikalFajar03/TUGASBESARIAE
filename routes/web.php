@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\BudgetController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,3 +43,16 @@ Route::get('/edittransaksi/{id}', function ($id) {
 
 // Tambahkan route ini
 Route::post('/update-transaction/{transaction}', [TransactionController::class, 'updateAndRedirect']);
+
+//Route Budget
+Route::delete('/budgets/{budget}', [BudgetController::class, 'destroy']);
+Route::put('/budgets/{budget}', [BudgetController::class, 'update']);
+
+
+Route::get('/editbudget/{id}', function ($id) {
+    $budget = App\Models\Budget::findOrFail($id);
+    return view('editbudget', ['budget' => $budget]);
+});
+
+
+Route::post('/update-budget/{budget}', [BudgetController::class, 'updateAndRedirect']);

@@ -37,58 +37,35 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <link id="color-scheme" href="assets/css/colors/default.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        form {
-            width: 300px;
-            margin: 50px auto;
-            padding: 30px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        form label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        form input[type="text"], form input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
-
-        form input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-
-        form input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
+       body {
+    font-family: Arial, sans-serif;
+}
+.budget-form {
+    width: 300px;
+    margin: 0 auto;
+    border: 1px solid #000;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+}
+.budget-form input[type="text"],
+.budget-form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+.budget-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+.budget-form button:hover {
+    opacity: 0.8;
+}
         .center-transaksi-tombol {
             display: flex;
             justify-content: center;
@@ -132,19 +109,20 @@
           </div>
         </section>
         <section class="module">
-          <div class="container">
-            <h1>Buat Anggaran Baru</h1>
-            <form id="anggaranForm">
-              <label for="category">Kategori:</label><br>
-              <input type="text" id="category" name="category"><br>
-              <label for="amount">Jumlah:</label><br>
-              <input type="number" id="amount" name="amount"><br>
-              <input type="submit" class="btn btn-b btn-round" value="Submit">
-            </form>
-          </div>
+        <div class="container-budget">
+    <div class="budget-form">
+        <form id="budgetForm">
+            <label for="category">Category:</label><br>
+            <input type="text" id="category" name="category"><br>
+            <label for="amount">Amount:</label><br>
+            <input type="number" id="amount" name="amount"><br>
+            <button type="submit">Submit</button>
+        </form> 
+    </div>
+</div>
 
           <div class="center-transaksi-tombol">
-              <a href="/indextransaksi">
+              <a href="/indexbudget">
                   <button>Kembali</button>
               </a>
           </div>
@@ -239,33 +217,41 @@
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-  $(document).ready(function(){
-    $('#anggaranForm').submit(function(e){
-      e.preventDefault();
-      var category = $('#category').val();
-      var amount = $('#amount').val();
-      
-      $.ajax({
-        url: '/api/budgets',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({ category: category, amount: amount }),
-        success: function(data) {
-          if (data.success) {
-            alert('Anggaran berhasil dibuat!');
-          } else {
-            alert('Terjadi kesalahan: ' + data.message);
-          }
-        },
-        error: function(xhr, textStatus, errorThrown) {
-          console.error('Error:', errorThrown);
-          alert('Terjadi kesalahan, silakan coba lagi.');
-        }
-      });
-    });
-  });
-</script>
+    <script>
+document.getElementById("budgetForm").addEventListener("submit", function(event){
+  event.preventDefault()
 
+  let url = "http://127.0.0.1:8000/api/budgets";
+  let data = {
+    category: document.getElementById('category').value,
+    amount: document.getElementById('amount').value
+  };
+
+  fetch(url, {
+      method: 'POST', 
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data), 
+  })
+  .then(response => {
+    if (!response.ok) {
+        throw new Error("HTTP error " + response.status);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+    alert('Data budget berhasil dibuat!');
+    // Mengosongkan kolom setelah data berhasil disimpan
+    document.getElementById('category').value = '';
+    document.getElementById('amount').value = '';
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+    alert('Terjadi kesalahan, data budget gagal dibuat.');
+  });
+});
+</script>
   </body>
 </html>

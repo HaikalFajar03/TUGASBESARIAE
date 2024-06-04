@@ -85,4 +85,10 @@ class BudgetController extends Controller
         $budget->delete();
         return response(null, 204);
     }
+    public function updateAndRedirect(UpdateBudgetRequest $request, Budget $budget)
+{
+    $budget->update($request->validated());
+    // Redirect ke indextransaksi.blade.php setelah pembaruan
+    return redirect('/indexbudget');
+}
 }
