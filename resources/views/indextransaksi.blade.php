@@ -36,110 +36,81 @@
     <link href="assets/lib/simple-text-rotator/simpletextrotator.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link id="color-scheme" href="assets/css/colors/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
 
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
+    .container-tabel-transaksi {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        h1 {
-            color: #333;
-            text-align: center;
-            padding: 20px 0;
-        }
+    h1 {
+        color: #333;
+        text-align: center;
+        padding: 20px 0;
+    }
 
-        form {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
+    .transaksi-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
 
-        form div {
-            display: flex;
-            flex-direction: column;
-        }
+    .transaksi-table thead tr {
+        background-color: #000;
+        color: white;
+    }
 
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+    .transaksi-table th,
+    .transaksi-table td {
+        border: 1px solid #ddd;
+        padding: 15px;
+        text-align: left;
+        white-space: nowrap;
+    }
 
-        input[type="text"], input[type="date"], input[type="number"], textarea {
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+    .transaksi-table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    
+    .transaksi-table th:last-child, .transaksi-table td:last-child {
+    width: 1%; /* Atur lebar kolom aksi menjadi minimum */
+}
 
-        input[type="submit"] {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            background-color: #007BFF;
-            color: white;
-            cursor: pointer;
-        }
+    .transaksi-table tbody tr:hover {
+        background-color: #ddd;
+    }
+    /* Tambahkan gaya untuk tombol */
+    .btn {
+        padding: 10px 20px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+    }
 
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
+    .btn-primary {
+        background-color: #007bff;
+    }
 
-        .text-center {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
+    .btn-danger {
+        background-color: #dc3545;
+    }
 
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-        .btn-round {
-            border-radius: 20px;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: white;
-        }
-
-        .container-transaksi {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-        }
-
-        .transaksi-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .transaksi-table thead tr {
-            background-color: #000;
-            color: white;
-        }
-
-        .transaksi-table th,
-        .transaksi-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        .transaksi-table tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        .transaksi-table tbody tr:hover {
-            background-color: #ddd;
-        }
+    .btn i {
+        margin-right: 5px;
+    }
+</style>
 
     </style>
   </head>
@@ -175,35 +146,26 @@
           </div>
         </section>
         <section class="module">
-          <div class="container">
-            <h1>Transaksi</h1>
-            <div class="text-center">
-              <a href="/createtransaksi" class="btn btn-b btn-round">Tambah Transaksi</a>
+            <div class="container-tabel-transaksi">
+                <!-- Tombol "Buat Transaksi" di sebelah kiri -->
+                <h1>Data Transaksi</h1>
+                <a href="/createtransaksi" class="btn btn-primary">Buat Transaksi</a>
+                <table class="transaksi-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Kategori</th>
+                            <th>Deskripsi</th>
+                            <th>Tanggal</th>
+                            <th>Jumlah</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionTable">
+                        <!-- Data transaksi akan ditampilkan di sini -->
+                    </tbody>
+                </table>
             </div>
-            <form id="filter-form" action="/filtertransaksi" method="get" style="display: flex; justify-content: space-between; align-items: center;">
-              <div style="position: relative;">
-                <input type="text" id="search" name="search" placeholder="Cari...">
-                <input type="submit" class="btn btn-b btn-round" value="Filter">
-              </div>
-            </form>
-            <div class="container-transaksi">
-              <table class="transaksi-table">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Category</th>
-                    <th>Amount</th>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody id="transaksi-body">
-                  <!-- Data transaksi akan ditampilkan di sini -->
-                </tbody>
-              </table>
-            </div>
-          </div>
         </section>
 
         <footer class="footer bg-dark">
@@ -235,91 +197,60 @@
     <script src="assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
-
     <script>
-      // Fungsi untuk mengambil dan menampilkan data transaksi
-      function loadTransactions(filter = '') {
-        $.ajax({
-          url: `http://127.0.0.1:8000/api/transactions${filter}`,
-          method: 'GET',
-          success: function(data) {
-            const tbody = $('#transaksi-body');
-            tbody.empty();
-            if (data.length === 0) {
-              tbody.append('<tr><td colspan="6">No transactions found.</td></tr>');
-            } else {
-              data.forEach(transaction => {
-                tbody.append(`
-                  <tr>
-                    <td>${transaction.id}</td>
-                    <td>${transaction.category}</td>
-                    <td>${transaction.amount}</td>
-                    <td>${transaction.date}</td>
-                    <td>${transaction.description}</td>
-                    <td>
-                      <button onclick="editTransaction(${transaction.id})">Edit</button>
-                      <button onclick="deleteTransaction(${transaction.id})">Delete</button>
-                    </td>
-                  </tr>
-                `);
-              });
-            }
-          },
-          error: function(err) {
-            console.error('Error fetching transactions', err);
-          }
-        });
-      }
-
-      // Fungsi untuk mengedit transaksi
-      function editTransaction(id) {
-        const newAmount = prompt('Enter new amount:');
-        if (newAmount) {
-          $.ajax({
-            url: `http://127.0.0.1:8000/api/transactions/${id}`,
-            method: 'PUT',
-            contentType: 'application/json',
-            data: JSON.stringify({ amount: newAmount }),
-            success: function() {
-              alert('Transaction updated successfully');
-              loadTransactions();
-            },
-            error: function(err) {
-              console.error('Error updating transaction', err);
-            }
-          });
+        // Metode DELETE
+        function deleteTransaction(id) {
+            fetch(`http://127.0.0.1:8000/api/transactions/${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // Refresh tabel setelah penghapusan
+                location.reload();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
         }
-      }
 
-      // Fungsi untuk menghapus transaksi
-      function deleteTransaction(id) {
-        if (confirm('Are you sure you want to delete this transaction?')) {
-          $.ajax({
-            url: `http://127.0.0.1:8000/api/transactions/${id}`,
-            method: 'DELETE',
-            success: function() {
-              alert('Transaction deleted successfully');
-              loadTransactions();
-            },
-            error: function(err) {
-              console.error('Error deleting transaction', err);
-            }
-          });
-        }
-      }
+        // Metode PUT
+function updateTransaction(id, updatedData) {
+    fetch(`http://127.0.0.1:8000/api/transactions/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        // Arahkan pengguna kembali ke indextransaksi.blade.php setelah pembaruan berhasil
+        window.location.href = '/indextransaksi';
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
 
-      // Fungsi untuk memfilter transaksi
-      $('#filter-form').submit(function(event) {
-        event.preventDefault();
-        const search = $('#search').val();
-        const filter = search ? `?search=${encodeURIComponent(search)}` : '';
-        loadTransactions(filter);
-      });
 
-      // Memuat data transaksi saat halaman dimuat
-      $(document).ready(function() {
-        loadTransactions();
-      });
+fetch('http://127.0.0.1:8000/api/transactions')
+        .then(response => response.json())
+        .then(data => {
+            let table = document.getElementById('transactionTable');
+            data.data.forEach(item => {
+                let row = table.insertRow();
+                row.insertCell(0).innerHTML = item.id;
+                row.insertCell(1).innerHTML = item.category;
+                row.insertCell(2).innerHTML = item.description;
+                row.insertCell(3).innerHTML = item.date;
+                row.insertCell(4).innerHTML = item.amount;
+                let actions = row.insertCell(5);
+                actions.innerHTML = `<a href="/edittransaksi/${item.id}" class="btn btn-primary"><i class="fas fa-edit"></i> Perbarui</a> <button onclick="deleteTransaction(${item.id})" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button>`;
+            });
+        })
+        .catch(error => console.error('Error:', error));
     </script>
   </body>
 </html>

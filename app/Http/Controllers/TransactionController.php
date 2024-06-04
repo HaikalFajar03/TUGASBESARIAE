@@ -94,4 +94,10 @@ class TransactionController extends Controller
         $transaction->delete();
         return response(null, 204);
     }
+    public function updateAndRedirect(UpdateTransactionRequest $request, Transaction $transaction)
+{
+    $transaction->update($request->validated());
+    // Redirect ke indextransaksi.blade.php setelah pembaruan
+    return redirect('/indextransaksi');
+}
 }

@@ -64,6 +64,7 @@
     width: 80%;
     margin: 0 auto;
     padding: 20px;
+    margin-top: 50px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -111,126 +112,36 @@ input[type="submit"]:hover {
   </head>
   <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
     <main>
-      <div class="page-loader">
-        <div class="loader">Loading...</div>
-      </div>
-      <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-            <span class="navbar-toggle" type="text" data-toggle="collapse" data-target="#custom-collapse">Toggle navigation</span>
-            <a class="navbar-brand" >UangQu</a>
-        </div>
-
-          <div class="collapse navbar-collapse" id="custom-collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#totop">Home</a></li>
-              <li><a class="section-scroll" href="/#services">Services</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
       <div class="main">
-        <section class="module bg-dark-30 about-page-header" data-background="assets/images/about_bg.jpg">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6 col-sm-offset-3">
-                <h1 class="module-title font-alt mb-0">Edit Transaksi</h1>
-              </div>
-            </div>
-          </div>
-        </section>
         <section class="module">
-        <div class="container-transaksi">
+    <div class="container-transaksi">
         <h1>Edit Transaksi</h1>
-            <form action="/edittransaksi" method="post">
-                <label for="id">ID Transaksi:</label><br>
-                <input type="text" id="id" name="id"><br>
-                <label for="kategori">Kategori:</label><br>
-                <input type="text" id="kategori" name="kategori"><br>
-                <label for="jumlah">Jumlah:</label><br>
-                <input type="number" id="jumlah" name="jumlah"><br>
-                <label for="deskripsi">Deskripsi:</label><br>
-                <textarea id="deskripsi" name="deskripsi"></textarea><br>
-                <input type="submit" value="Update">
-            </form>
+        <!-- Perhatikan bahwa action form sekarang mengarah ke route web, bukan API -->
+        <form action="/update-transaction/{{ $transaction->id }}" method="POST">
+            @csrf
+            @method('POST')
+
+            <label for="category">Kategori:</label><br>
+            <input type="text" id="category" name="category" value="{{ $transaction->category }}"><br>
+
+            <label for="description">Deskripsi:</label><br>
+            <input type="text" id="description" name="description" value="{{ $transaction->description }}"><br>
+
+            <label for="date">Tanggal:</label><br>
+            <input type="date" id="date" name="date" value="{{ $transaction->date }}"><br>
+
+            <label for="amount">Jumlah:</label><br>
+            <input type="number" id="amount" name="amount" value="{{ $transaction->amount }}"><br>
+
+            <input type="submit" value="Perbarui">
+        </form>
     </div>
-        </section>
-        <div class="module-small bg-dark">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-3">
-                <div class="widget">
-                  <h5 class="widget-title font-alt">About Titan</h5>
-                  <p>The languages only differ in their grammar, their pronunciation and their most common words.</p>
-                  <p>Phone: +1 234 567 89 10</p>Fax: +1 234 567 89 10
-                  <p>Email:<a href="#">somecompany@example.com</a></p>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="widget">
-                  <h5 class="widget-title font-alt">Recent Comments</h5>
-                  <ul class="icon-list">
-                    <li>Maria on <a href="#">Designer Desk Essentials</a></li>
-                    <li>John on <a href="#">Realistic Business Card Mockup</a></li>
-                    <li>Andy on <a href="#">Eco bag Mockup</a></li>
-                    <li>Jack on <a href="#">Bottle Mockup</a></li>
-                    <li>Mark on <a href="#">Our trip to the Alps</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="widget">
-                  <h5 class="widget-title font-alt">Blog Categories</h5>
-                  <ul class="icon-list">
-                    <li><a href="#">Photography - 7</a></li>
-                    <li><a href="#">Web Design - 3</a></li>
-                    <li><a href="#">Illustration - 12</a></li>
-                    <li><a href="#">Marketing - 1</a></li>
-                    <li><a href="#">Wordpress - 16</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="widget">
-                  <h5 class="widget-title font-alt">Popular Posts</h5>
-                  <ul class="widget-posts">
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-1.jpg" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
-                        <div class="widget-posts-meta">23 january</div>
-                      </div>
-                    </li>
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-2.jpg" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
-                        <div class="widget-posts-meta">15 February</div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr class="divider-d">
-        <footer class="footer bg-dark">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6">
-                <p class="copyright font-alt">&copy; 2017&nbsp;<a href="index.html">TitaN</a>, All Rights Reserved</p>
-              </div>
-              <div class="col-sm-6">
-                <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </div>
-      <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+    <div class="center-transaksi-tombol">
+        <a href="/indextransaksi">
+            <button>Kembali</button>
+        </a>
+    </div>
+</section>
     </main>
     <!--  
     JavaScripts

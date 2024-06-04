@@ -100,7 +100,7 @@
           </div>
         </div>
       </nav>
-      <section class="home-section home-full-height bg-dark bg-gradient" id="home" data-background="assets/images/section-10.jpg">
+      <section class="home-section home-full-height bg-dark bg-gradient" id="home" data-background="">
         <div class="titan-caption">
           <div class="caption-content">
             <div class="font-alt mb-40 titan-title-size-4">UangQu</div>
